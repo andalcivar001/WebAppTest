@@ -1,0 +1,38 @@
+$color-button-primary: #ffc907;
+$color-button-primary-hover: #e0a800;
+$color-button-refresh: #e9e5d8;
+$color-button-refresh-hover: #8a8881;
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente si es necesario */
+}
+
+.button-guardar {
+  background-color: $color-button-primary;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $color-button-primary-hover;
+  }
+}
+.button-reiniciar {
+  background-color: $color-button-refresh;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  &:hover {
+    background-color: $color-button-refresh-hover;
+  }
+}

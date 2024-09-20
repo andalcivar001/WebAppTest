@@ -1,0 +1,58 @@
+# Node modules
+node_modules/
+
+# Angular build output
+/dist
+/build
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+jspm_packages/
+
+# Compiled files
+*.class
+*.pyc
+*.pyo
+*.pyd
+*.exe
+*.out
+*.app
+*.dmg
+
+# System files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Environment files
+.env
+.env.*.local
+
+# Miscellaneous
+*.log
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Angular specific
+.angular/
+.angular-cache/
+.angular-cli.json
+.angular.json

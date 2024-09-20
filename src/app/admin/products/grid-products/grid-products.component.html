@@ -1,0 +1,71 @@
+<h3 style="text-align: center"><i class="fas fa-money-bill-wave"></i> Banco</h3>
+<div class="container">
+  <div class="header">
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Buscar..."
+      (input)="onSearch($event)"
+    />
+    <button class="add-button" (click)="crearProducto()">Agregar</button>
+  </div>
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Nombre del Producto</th>
+          <th>Descripción</th>
+          <th>Fecha de Liberación</th>
+          <th>Fecha de Reestructuración</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of filteredData; track product) {
+        <tr>
+          <td>
+            @if(product.logo){
+            <img class="logo-image" [src]="product.logo" alt="" />
+            }@else{
+            <i class="fas fa-question-circle"></i>
+            }
+          </td>
+
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.date_release | date : "yyyy-MM-dd" : "UTC" }}</td>
+          <td>{{ product.date_revision | date : "yyyy-MM-dd" : "UTC" }}</td>
+          <td>
+            <div class="dropdown">
+              <button class="dropdown-toggle" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" (click)="editarProducto(product.id)"
+                  >Editar</a
+                >
+                <a
+                  class="dropdown-item"
+                  (click)="eliminarProducto(product.id, product.name)"
+                  >Eliminar</a
+                >
+              </div>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; margin-top: 10px">
+    <p style="font-size: 12px">{{ filteredData.length }} Registros</p>
+    <select [(ngModel)]="pageSize" (ngModelChange)="onChangePageSize()">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+  </div>
+</div>

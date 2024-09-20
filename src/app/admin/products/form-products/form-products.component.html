@@ -1,0 +1,97 @@
+<h3 style="text-align: center"><i class="fas fa-money-bill-wave"></i> Banco</h3>
+<div class="container">
+  <h2 style="text-align: center">Formulario de Registro</h2>
+  <div class="divider"></div>
+
+  <form [formGroup]="formData" class="form-container">
+    <!-- Grupo de formulario para cada campo -->
+    <div class="form-group">
+      <label for="id">ID:</label>
+      <input type="text" id="id" formControlName="id" />@if(
+      formData.controls['id'].errors?.['required'] &&
+      (formData.controls['id'].dirty ||formData.controls['id'].touched)){
+      <span class="mensaje-error">Este campo es requerido</span>
+      } @if( formData.controls['id'].errors?.['minlength']){
+      <span class="mensaje-error">Longitud minima son 3 caracteres</span>
+      } @if( formData.controls['id'].errors?.['maxlength']){
+      <span class="mensaje-error">Longitud maxima son 10 caracteres</span>
+      }@if( formData.controls['id'].errors?.['idExistente']){
+      <span class="mensaje-error">Id ya existe</span>
+      }
+    </div>
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" id="name" formControlName="name" />
+      @if( formData.controls['name'].errors?.['required'] &&
+      (formData.controls['name'].dirty ||formData.controls['name'].touched)){
+      <span class="mensaje-error">Este campo es requerido</span>
+      } @if( formData.controls['name'].errors?.['minlength']){
+      <span class="mensaje-error">La longitud minima son 5 caracteres</span>
+      } @if( formData.controls['name'].errors?.['maxlength']){
+      <span class="mensaje-error">La longitud minima son 100 caracteres</span>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <input
+        type="text"
+        id="description"
+        formControlName="description"
+        required
+      />
+      @if( formData.controls['description'].errors?.['required'] &&
+      (formData.controls['description'].dirty
+      ||formData.controls['description'].touched)){
+      <span class="mensaje-error">Este campo es requerido</span>
+      } @if( formData.controls['description'].errors?.['minlength']){
+      <span class="mensaje-error">Longitud minima son 10 caracteres</span>
+      } @if( formData.controls['description'].errors?.['maxlength']){
+      <span class="mensaje-error">Longitud maxima son 200 caracteres</span>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="logo">Logo</label>
+      <input type="text" id="logo" formControlName="logo" required />
+      @if( formData.controls['logo'].errors?.['required'] &&
+      (formData.controls['logo'].dirty ||formData.controls['logo'].touched)){
+      <span class="mensaje-error">Este campo es requerido</span>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="date_release">Fecha Liberación:</label>
+      <input
+        type="date"
+        id="logo"
+        formControlName="date_release"
+        [min]="fechaServer"
+      />
+      @if( formData.controls['date_release'].errors?.['required'] &&
+      (formData.controls['date_release'].dirty
+      ||formData.controls['date_release'].touched)){
+      <span class="mensaje-error">Este campo es requerido</span>
+      } @if( formData.controls['date_release'].errors?.['ErrorFechaMin']){
+      <span class="mensaje-error"
+        >Fecha de liberación debe ser mayor a la fecha actual</span
+      >
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="date_revision">Fecha Revisión:</label>
+      <input type="text" id="logo" formControlName="date_revision" required />
+    </div>
+
+    <!-- Botón para enviar -->
+    <div class="button-group">
+      <button class="button-reiniciar" (click)="reiniciarForm()">
+        Reiniciar
+      </button>
+      <button type="submit" class="button-guardar" (click)="onSubmit()">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

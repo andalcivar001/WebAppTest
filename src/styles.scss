@@ -1,0 +1,310 @@
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@import "./assets/styles/buttons.scss";
+
+/* Estilos globales */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f8f8f8; /* Color gris */
+}
+
+.fas.fa-ellipsis-v {
+  cursor: pointer; /* Cambia el cursor a una mano para indicar que es clickable */
+}
+.fas.fa-ellipsis-v:active {
+  transform: scale(1.2); /* Aumenta el tamaño del icono cuando se hace clic */
+}
+
+/* Estilos Globales para la Tabla */
+.table {
+  width: 100%;
+  background-color: #fff;
+  font-size: 14px;
+  border-collapse: collapse;
+
+  thead {
+    background-color: #f4f4f4;
+
+    th {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 2px solid #ddd;
+    }
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: #f1f1f1;
+      }
+
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+
+  /* Media Queries */
+  @media (max-width: 480px) {
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+
+    thead th {
+      padding: 8px;
+    }
+
+    tbody td {
+      padding: 6px;
+    }
+
+    overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla excede el ancho del contenedor */
+    display: block; /* Cambia a un diseño en bloque para la tabla en pantallas pequeñas */
+
+    table {
+      width: 100%; /* Asegura que la tabla ocupe todo el ancho disponible */
+      border-collapse: separate; /* Asegura que las celdas no se colapsen en pantallas pequeñas */
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    font-size: 13px; /* Tamaño de fuente para pantallas medianas */
+
+    thead th {
+      padding: 9px;
+    }
+
+    tbody td {
+      padding: 8px;
+    }
+  }
+
+  @media (min-width: 769px) {
+    font-size: 14px; /* Tamaño de fuente para pantallas grandes */
+
+    thead th {
+      padding: 10px;
+    }
+
+    tbody td {
+      padding: 10px;
+    }
+  }
+}
+
+.table-wrapper {
+  overflow-x: auto; /* Permite el desplazamiento horizontal si la tabla excede el ancho del contenedor */
+  -webkit-overflow-scrolling: touch; /* Mejora el desplazamiento en dispositivos móviles */
+}
+
+/* Dropdown en la parte inferior derecha */
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  .dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+    padding: 0;
+    margin: 0;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-width: 160px;
+    z-index: 1;
+
+    .dropdown-item {
+      padding: 12px;
+      text-decoration: none;
+      color: #333;
+      display: block;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f4f4f4;
+      }
+    }
+  }
+
+  &:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+/* Input de búsqueda en la parte superior izquierda */
+.header {
+  display: flex;
+  justify-content: space-between; /* Alinea el contenido de manera que haya espacio entre los elementos */
+  align-items: center; /* Centra los elementos verticalmente */
+  margin-bottom: 20px;
+
+  /* Media Queries */
+  @media (max-width: 480px) {
+    flex-direction: column; /* Coloca los elementos en columna en pantallas pequeñas */
+    align-items: stretch; /* Alinea los elementos para que ocupen todo el ancho disponible */
+    margin-bottom: 10px; /* Reduce el margen inferior en pantallas pequeñas */
+  }
+}
+
+.search-input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%; /* Ocupa todo el ancho disponible en pantallas pequeñas */
+  max-width: 300px; /* Limita el ancho máximo en pantallas más grandes */
+
+  /* Media Queries */
+  @media (max-width: 480px) {
+    font-size: 12px;
+    padding: 6px;
+  }
+}
+
+.add-button {
+  padding: 10px 20px;
+  background-color: #ffc107;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px; /* Añade un margen a la izquierda para separar el botón del campo de búsqueda */
+
+  /* Media Queries */
+  @media (max-width: 480px) {
+    font-size: 12px;
+    padding: 8px 16px;
+    margin-left: 0; /* Elimina el margen a la izquierda en pantallas pequeñas para que el botón ocupe todo el ancho disponible */
+  }
+}
+
+.mensaje-error {
+  color: crimson;
+  font-size: 11px;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: #ccc;
+  margin: 20px 0; /* Espaciado opcional */
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; // Dos columnas de igual tamaño
+  gap: 20px; // Espacio entre columnas y filas
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // Una columna en pantallas pequeñas
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  label {
+    font-size: 13px;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+    @media (max-width: 768px) {
+      padding: 8px;
+    }
+  }
+
+  .button-group {
+    grid-column: span 2; // Botones ocupan ambas columnas
+
+    @media (max-width: 768px) {
+      grid-column: span 1; // Botones ocupan una columna en pantallas pequeñas
+    }
+
+    display: flex;
+    justify-content: center; // Centrar los botones horizontalmente
+    gap: 10px; // Espacio entre los botones
+  }
+}
+
+button {
+  margin: 10px; /* Espaciado opcional entre botones */
+}
+
+@media (max-width: 768px) {
+  .form-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+.container {
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%; /* Asegura que el contenedor no exceda el ancho de la pantalla */
+
+  /* Media Queries */
+  @media (min-width: 320px) and (max-width: 480px) {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    margin: 15px;
+    padding: 15px;
+  }
+
+  @media (min-width: 769px) {
+    margin: 20px;
+    padding: 20px;
+  }
+}
+
+.logo-image {
+  height: 20px;
+}
+
+select {
+  width: 80px; /* o el ancho que desees */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
